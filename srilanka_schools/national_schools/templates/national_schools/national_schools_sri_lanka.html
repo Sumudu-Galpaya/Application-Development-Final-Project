@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sri Lanka School Insight</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="{% static 'css/style_schools.css' %}" />
+</head>
+
+<body>
+    <div class="Section1">
+        <h1>Sri Lanka School Insight: A Visual Education Dashboard</h1>
+        <p class="subtitle">An Interactive Map of National Schools and An Overview of School Education Landscape in Sri Lanka</p>
+    </div>
+    
+<div class="image-gallery">
+    <img src="{% static 'images/school_1.png' %}">
+    <img src="{% static 'images/school_2.png' %}">
+</div> 
+    <div class="Section2">
+        <h2>School Education System in Sri Lanka</h2>
+        <h3>Overview of the School Administrative System</h3>
+        <p>The education system in Sri Lanka is centrally managed by the <a href="https://www.moe.gov.lk" target="_blank" rel="noopener noreferrer">Ministry of Education</a>, which sets national policies, curricula, and examination standards. Below the ministry, provincial education ministries oversee implementation at the regional level through Provincial Departments of Education. Each province is divided into Zonal Education Offices, which supervise schools within their zones. Furthermore, under each zonal education level there are divisional level education offices to ease the administrative procedures. At the school level, principals and school management committees handle day-to-day operations. This hierarchical structure ensures centralized policy with localized administration in the school education sector in Sri Lanka.</p>
+    </div>
+
+    <div class="Section3">
+        <h3>Categorization of schools</h3>
+        <p>Sri Lanka's school system includes a variety of institutions catering to different educational needs. There are government maintained or public schools, which are state-funded and widely accessible.Those are mainly focussing the national curriculum and use Sinhala or Tamil as the medium of instruction depending on the language that the majority uses. Some of the public schools facilitate for English medium eductaion as well. Private and international schools offer alternative curricula, such as Edexcel or Cambridge, and often use English as the medium of instruction.</p>
+        <p>Public schools are further categorized as national and provincial schools based on the management perspective. National schools are managed by the central Ministry of Education whereas the provincial schools are overseen by provincial councils. These schools are further categorized into four main types as 1AB, 1C, Type 2, and Type 3 based on the highest grade offered and the availability of Advanced Level (A/L) subject streams. </p> <p>Additionally, the country has religious and special education institutions, including Buddhist Pirivenas, Christian Missionary Schools, Islamic Education Institutions and schools for children with disabilities, reflecting the system’s diversity and inclusivity.</p>
+    </div>
+
+    <div class="Section4">
+        <h4>National Schools in Sri Lanka</h4>
+        <p>National schools constitute a distinct category within Sri Lanka's public education system, operating under the direct administration and funding of the central Ministry of Education. Unlike provincial schools, they are governed by a centralized authority, which facilitates the implementation of uniform national standards and policies. These institutions are widely recognized for their commitment to academic excellence, often possessing superior infrastructure, advanced educational resources, and a broader range of extracurricular facilities.</p><p>Admission to a national school is very competitive. Entry is usually decided by how well a student performs in national exams, especially the Grade 5 Scholarship Examination for those hoping to get into Grade 6. The whole purpose of the national school system is to provide a high-quality education and equal opportunities to students in every district, playing a key role in improving the nation's educational standards.</p><p>This aim of this education dashboard is to vizualize the distribution of national schools in Sri Lanka. This interactive map serves as a detailed dashboard for exploring the national school network and the educational landscape of Sri Lanka. Using a comprehensive dataset of geocoded schools, the map accurately plots the precise location of each national school across the country. <p>You can use the filtering system to explore schools based on various administrative divisions, including Provinces, Districts, Education Zones, and Education Divisions. Clicking on any school marker will display a popup with detailed information, such as the school's address, province, district, education zone, education division and the type and medium of instruction.</p>
+    </div>   
+    <div class="map-and-content-container">
+
+        <div id="map"></div>
+        <div class="right-panel">
+            <div class="filters-container">
+                <label for="province-select">Province:</label>
+                <select id="province-select" onchange="filterMarkers()">
+                    <option value="all">All Provinces</option>
+                </select>
+
+                <label for="district-select">District:</label>
+                <select id="district-select" onchange="filterMarkers()">
+                    <option value="all">All Districts</option>
+                </select>
+
+                <label for="zone-select">Education Zone:</label>
+                <select id="zone-select" onchange="filterMarkers()">
+                    <option value="all">All Zones</option>
+                </select>
+
+                <label for="division-select">Education Division:</label>
+                <select id="division-select" onchange="filterMarkers()">
+                    <option value="all">All Divisions</option>
+                </select>
+                <button id="clear-filters-btn">Clear All Filters</button>
+            </div>
+
+            <div class="text-content">
+                <h2>Instructions to use the interactive map</h2>
+                <p>1. View Schools on the Map</p>
+
+<p>The map displays markers representing all national schools in Sri Lanka. You can navigate the map by clicking and dragging. Use your mouse wheel or the +/- buttons to zoom in and out.</p>
+
+2. Filter Schools</p>
+
+To find specific schools, use the filters on the right-hand side of the page.
+
+    Select an option from the Province, District, Education Zone, or Education Division dropdowns.
+
+    The map will automatically update to show only the schools that match your selection.
+
+    You can clear all filters by clicking the Clear All Filters button.</p>
+
+3. View School Details</p>
+
+To get more information about a specific school:
+
+    Click on a school's marker on the map.
+
+    A pop-up will appear with details like the school's name, address, and administrative information.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="{% static 'js/schools_map.js' %}"></script>
+
+    <footer class="disclaimer">
+    <p>Disclaimer: This educational dashborad was created by Sumudu Priyadarshika Galpayage Dona as a Master Student of Applied Geoinformatics at Paris Lodron University of Salzburg, Austria for the final assessment of Application Development course. 
+        The data on this dashboard is for educational purposes only. While every effort has been made to ensure accuracy, I do not guarantee the completeness or correctness of the information provided. Data is based on sources available as of 2024 and may be subject to change. Please verify critical information independently.</p><p>Credits for Data: Ministry of Education, Sri Lanka; Credits for Images: Internet Sources</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* General Body and Main Container Styles */
+body {
+    font-family: sans-serif;
+    margin: 50px;
+    padding: 0;
+    background-color: #f0f8ff; /* NEW: A light blue background color */
+}
+
+/* Paragraphs generally justified */
+p {
+    text-align: justify;
+}
+
+/* NEW: Header and subtitle styles added back in */
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Georgia', serif; /* Change the font type */
+    color: #004d40;                /* Change the font color to a dark teal */
+}
+
+.subtitle {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.2rem; /* Example: a larger size than default text */
+    color: #700;      /* Example: a dark gray color */
+}
+
+.Section1 {
+    text-align: center;
+}
+
+/* Two-column layout for the map and the right-side content */
+.map-and-content-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+#map {
+    height: 700px;
+    width: 65%;
+    flex-shrink: 0;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+/* Styling for the filters container */
+.filters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Styling for the text content box */
+.text-content {
+    padding: 20px;
+    background-color: hwb(160 51% 13%);
+    border-radius: 8px;
+    font-size: 0.8rem; /* Example: Sets font size */
+    font-family: 'Georgia', sans-serif; /* Example: Sets font type */
+}
+
+/* Styling for the disclaimer */
+.disclaimer {
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: #3b0202c3;
+    text-align: center;
+    background-color: #d2d5d2;
+    border-top: 1px solid #7c7a7a;
+}
+/* NEW: Ensure both images are the same size and fit nicely */
+.image-gallery img {
+    width: 600px;
+    height: 400px;
+    object-fit: cover; /* This crops the image to fit without stretching it */
+    border: 1px solid #ccc;
+}
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between the images */
+    margin: 20px 0;
+}
