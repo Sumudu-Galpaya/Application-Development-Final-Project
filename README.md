@@ -1,0 +1,1 @@
+This is the final project of Application Development Course. This contains HTML, CSS, Java Script and Python files inside the project folder. Additionally I have submitted a project report on what and how I conducted the process.
