@@ -1,0 +1,98 @@
+---
+title: "schools_national"
+author: "Sumudu"
+format: html
+editor: visual
+---
+
+```{r}
+# Load libraries
+library(tidygeocoder) # for Geocoding (converting addresses or place names to latitude and longitude) 
+library(dplyr) # for data manipulation and transformation
+library(readr) # for reading and writing data CSV file
+library(ggplot2) # for creating static data visualizations
+library(sf) # for handling and analyzing spatial (geographic) vector data
+library(rnaturalearth)#Accessing Natural Earth map data.
+library(rnaturalearthdata)#Contains the actual Natural Earth datasets used by rnaturalearth
+library(ggspatial)#Enhancing spatial plots made with ggplot2.
+```
+
+```{r}
+# Step 1: Read the CSV file from the path where data is saved to a variable called Schools_national
+schools_national <- "C:/AGI/3.Summer25/Applicationdevelopment/Webdevelopment/Assignment_project/school_details/for_geocoding/national_shools.csv"  
+schools_national <- read_csv(schools_national)#assign the read data to the schools_national variable
+```
+
+```{r}
+# Step 2: Inspect the dataset
+glimpse(schools_national)
+```
+
+```{r}
+library(tidygeocoder)
+library(dplyr)
+# geocode batchwise to avoid traffic
+batch_size <- 500
+pause_secs <- 2
+n <- nrow(schools_national)
+
+results_list <- list()
+
+for (i in seq(1, n, by = batch_size)) {
+  cat("Processing rows", i, "to", min(i + batch_size - 1, n), "...\n")
+  batch <- schools_national[i:min(i + batch_size - 1, n), ] %>%
+  geocode(address = "Full Address", method = "arcgis", lat = latitude, long = longitude)
+
+  results_list[[length(results_list) + 1]] <- batch
+
+  Sys.sleep(pause_secs)
+}
+
+geocoded_data <- bind_rows(results_list)
+
+write.csv(geocoded_data, "geocoded_schools_national.csv", row.names = FALSE)
+
+```
+
+```{r}
+getwd()
+
+```
+
+#To check the accuaracy of geocoded locations
+```{r}
+# Load libraries
+library(leaflet)
+library(readr)
+library(dplyr)
+
+# Load your CSV file (adjust the path if needed)
+data <- read_csv("C:/AGI/3.Summer25/Applicationdevelopment/Webdevelopment/Assignment_project/school_details/Geocoded/geocoded_schools_national.csv")
+
+# Check if columns are correct
+head(data)
+
+# Filter out rows with missing coordinates
+data_clean <- data %>%
+  filter(!is.na(latitude) & !is.na(longitude))
+
+# Create a leaflet map
+map <- leaflet(data_clean) %>%
+  addTiles() %>%  # Add default OpenStreetMap tiles
+  addCircleMarkers(
+    lng = ~longitude,
+    lat = ~latitude,
+    popup =  ~as.character(School_Name),
+    radius = 5,
+    color = "blue",
+    stroke = FALSE,
+    fillOpacity = 0.7
+  )
+
+# Display the map
+print(map)  
+
+```
+
+```{}
+```
